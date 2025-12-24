@@ -12,11 +12,12 @@ dependencies = [
     "uvicorn (>=0.38.0,<0.39.0)",
     "python-dotenv (>=1.2.1,<2.0.0)",
     "sqlalchemy (>=2.0.45,<3.0.0)",
-    "asyncpg (>=0.31.0,<0.32.0)"
+    "asyncpg (>=0.31.0,<0.32.0)",
+    "pwdlib[argon2] (>=0.3.0,<0.4.0)",
 ]
 
 [tool.poetry]
-packages = [{include = "client_webapp", from = "src"}]
+package-mode = false
 
 
 [tool.poetry.group.dev.dependencies]
