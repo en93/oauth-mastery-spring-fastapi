@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: my_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ouath_client_db
+      PGDATA: /var/lib/postgresql/18/data
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/18/data
+
+volumes:
+  pgdata:
