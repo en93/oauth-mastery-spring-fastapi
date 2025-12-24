@@ -18,20 +18,25 @@ const MainLayout = () => {
   const handleLogout = () => {
     // TODO: Add actual logout logic
     console.log('Logout');
-    navigate('/'); // Redirect to root landing page after logout
+    navigate('/', { state: { farewell: true } }); // Redirect with state
   };
   
   const handlePreferences = () => {
     navigate('/preferences');
   }
 
-  const isHomePage = location.pathname === '/home';
+  // Determine button visibility based on the current path
+  const publicRoutes = ['/', '/login', '/signup'];
+  const topLevelPages = ['/', '/login', '/signup', '/home'];
+  const isAuthenticated = !publicRoutes.includes(location.pathname);
+  const isTopLevelPage = topLevelPages.includes(location.pathname);
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {!isHomePage && (
+          {!isTopLevelPage && (
             <IconButton
               edge="start"
               color="inherit"
@@ -45,19 +50,21 @@ const MainLayout = () => {
           <Typography
             variant="h6"
             component="div"
-            onClick={() => navigate('/home')}
+            onClick={() => isAuthenticated ? navigate('/home') : navigate('/')}
             sx={{ flexGrow: 1, cursor: 'pointer' }}
           >
             Greetings
           </Typography>
-          <Box>
-            <Button color="inherit" onClick={handlePreferences}>
-              Preferences
-            </Button>
-            <Button color="inherit" onClick={handleLogout}>
-              Logout
-            </Button>
-          </Box>
+          {isAuthenticated && (
+            <Box>
+              <Button color="inherit" onClick={handlePreferences}>
+                Preferences
+              </Button>
+              <Button color="inherit" onClick={handleLogout}>
+                Logout
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       <Container component="main" sx={{ mt: 4, mb: 4 }}>

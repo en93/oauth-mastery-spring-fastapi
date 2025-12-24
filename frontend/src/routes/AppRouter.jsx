@@ -20,13 +20,14 @@ import MainLayout from '../layouts/MainLayout';
 const AppRouter = () => {
   return (
     <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-
-      {/* Protected Routes - These will be wrapped by the MainLayout */}
+      {/* MainLayout now wraps all pages */}
       <Route element={<MainLayout />}>
+        {/* Public Routes */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+
+        {/* Protected Routes */}
         <Route path="/home" element={<HomePage />} />
         <Route path="/preferences" element={<PreferencesPage />} />
         <Route path="/change-password" element={<ChangePasswordPage />} />
@@ -39,5 +40,4 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-
 

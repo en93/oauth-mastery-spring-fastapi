@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Box, Button, Container, Typography } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Alert, Box, Button, Container, Typography } from '@mui/material';
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -16,6 +17,11 @@ const LandingPage = () => {
           textAlign: 'center',
         }}
       >
+        {state?.farewell && (
+          <Alert severity="success" sx={{ mb: 3, width: '100%' }}>
+            Farewell! You have been successfully logged out.
+          </Alert>
+        )}
         <Typography component="h1" variant="h2" gutterBottom>
           Greetings
         </Typography>
@@ -46,3 +52,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
