@@ -24,8 +24,7 @@ class AuthIdentityRepository:
             display_email=display_email,
         )
         self.session.add(new_auth_identity)
-        await self.session.commit()
-        await self.session.refresh(new_auth_identity)
+        await self.session.flush()
         return new_auth_identity
 
     async def get_by_provider(
