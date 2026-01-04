@@ -1,3 +1,5 @@
+-- todo manage migrations wih Alembic
+
 -- PostgresQL database setup script
 
 -- Enable citext extension for case-insensitive unique columns

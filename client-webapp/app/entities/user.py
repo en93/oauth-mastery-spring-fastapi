@@ -14,9 +14,7 @@ from app.database import Base
 class User(Base, AsyncAttrs):
     __tablename__ = "users"
 
-    id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), primary_key=True
-    )
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True)
     user_full_name: Mapped[str]
     primary_email: Mapped[str] = mapped_column(unique=True)
     primary_email_verified: Mapped[bool] = mapped_column(default=False)
@@ -24,7 +22,9 @@ class User(Base, AsyncAttrs):
         DateTime(timezone=True), server_default=func.now()
     )
     updated_at: Mapped[DateTime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now(), server_onupdate=ServerOnUpdate(func.now())
+        DateTime(timezone=True),
+        server_default=func.now(),
+        server_onupdate=ServerOnUpdate(func.now()),
     )
 
     auth_identities: Mapped[list["AuthIdentity"]] = relationship(
