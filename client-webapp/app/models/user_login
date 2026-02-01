@@ -1,0 +1,5 @@
+from app.models.base import Base
+
+class user_login(Base):
+    email: str
+    password: str #  todo update to mask when output

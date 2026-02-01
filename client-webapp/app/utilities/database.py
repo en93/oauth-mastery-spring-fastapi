@@ -3,7 +3,7 @@ from app.settings import Settings
 
 
 def _get_db_url(app_settings: Settings) -> str:
-    return f"postgresql://{app_settings.DB_USER}:{app_settings.DB_PASSWORD}@{app_settings.DB_HOST}:{app_settings.DB_PORT}/{app_settings.DB_NAME}?options=-csearch_path={app_settings.DB_SCHEMA}"
+    return f"postgresql+asyncpg://{app_settings.DB_USER}:{app_settings.DB_PASSWORD}@{app_settings.DB_HOST}:{app_settings.DB_PORT}/{app_settings.DB_NAME}?options=-csearch_path={app_settings.DB_SCHEMA}"
 
 
 def create_session_factory(app_settings: Settings) -> async_sessionmaker[AsyncSession]:
