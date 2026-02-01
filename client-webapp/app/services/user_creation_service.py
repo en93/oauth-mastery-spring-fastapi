@@ -11,7 +11,6 @@ async def create_user(sign_up_form: user_creation, session: AsyncSession):
     # auth_identity_repo = AuthIdentityRepository(session)
 
     hashed_pw = await hash_password(sign_up_form.password)
-    print(hashed_pw)
 
     # async with session.begin():
     #     new_user = await user_repo.create_user(
